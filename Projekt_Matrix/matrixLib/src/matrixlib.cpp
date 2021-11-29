@@ -328,7 +328,7 @@ int **multiplyByScalar(int **matrix, int rows, int columns, int **scalar)
     resultMatrix = createMatrix(resultMatrix, &rows, &columns, 3);
     for (int row_number = 0; row_number < rows; ++row_number)
     {
-     for (int col_number = 0; col_number < columns; ++col_number)
+    for (int col_number = 0; col_number < columns; ++col_number)
      {
      resultMatrix[row_number][col_number] = matrix[row_number][col_number] * scalar[row_number][col_number];
      }
@@ -342,10 +342,10 @@ double **multiplyByScalar(double **matrix, int rows, int columns, double **scala
     resultMatrix = createMatrix(resultMatrix, &rows, &columns, 3);
     for (int row_number = 0; row_number < rows; ++row_number)
     {
-      for (int col_number = 0; col_number < columns; ++col_number)
-      {
-       resultMatrix[row_number][col_number] = matrix[row_number][col_number] * scalar[row_number][col_number];
-      }
+    for (int col_number = 0; col_number < columns; ++col_number)
+    {
+    resultMatrix[row_number][col_number] = matrix[row_number][col_number] * scalar[row_number][col_number];
+    }
     }
     return resultMatrix;
 }
@@ -443,34 +443,34 @@ double determinantMatrix(int **matrix, int rows, int columns)
 
 double determinantMatrix(double **matrix, int rows, int columns)
 {
-    double det{};
-    double **matrixHelp{nullptr};
-    matrixHelp = createMatrix(matrixHelp, &rows, &columns, 3);
-    if (rows == 2)
-    {
-        return ((matrix[0][0]*matrix[1][1])-(matrix[1][0]*matrix[0][1]));
-    }
-    else
-    {
-      for (int c = 0; c < rows; ++c)
-      {
-       int subi{};
-       for (int i = 1; i < rows; ++i)
-       {
-        int subj{};
-        for (int j = 0; j < rows; ++j)
-        {
-        if (j==c)
-        {
-         continue;
-        }
-        matrixHelp[subi][subj]=matrix[i][j];
-        subj++;
-        }
-        subi++;
-        }
-        det = det + (pow(-1, c) * matrix[0][c] * determinantMatrix(matrixHelp,rows-1,columns-1));
-        }
+  double det{};
+  double **matrixHelp{nullptr};
+  matrixHelp = createMatrix(matrixHelp, &rows, &columns, 3);
+  if (rows == 2)
+  {
+  return ((matrix[0][0]*matrix[1][1])-(matrix[1][0]*matrix[0][1]));
+  }
+  else
+  {
+  for (int c = 0; c < rows; ++c)
+  {
+   int subi{};
+   for (int i = 1; i < rows; ++i)
+   {
+   int subj{};
+   for (int j = 0; j < rows; ++j)
+   {
+   if (j==c)
+   {
+   continue;
+   }
+   matrixHelp[subi][subj]=matrix[i][j];
+   subj++;
+   }
+   subi++;
+   }
+   det = det + (pow(-1, c) * matrix[0][c] * determinantMatrix(matrixHelp,rows-1,columns-1));
+   }
     }
     removeMatrix(matrixHelp, rows);
     return det;
@@ -478,94 +478,94 @@ double determinantMatrix(double **matrix, int rows, int columns)
 
 bool matrixIsDiagonal(int **matrix, int rows, int columns)
 {
-    int i{0}, j{0};
-    for (int row_number = 0; row_number < rows; ++row_number)
-    {
-     for (int col_number = 0; col_number < columns; ++col_number)
-    {
-     if (((row_number != i) || (col_number != i)) && (matrix[row_number][col_number] != 0))
-     {
-      return false;
-      }
-      }
-        i++;
-      }
-    return true;
+ int i{0}, j{0};
+ for (int row_number = 0; row_number < rows; ++row_number)
+ {
+ for (int col_number = 0; col_number < columns; ++col_number)
+ {
+ if (((row_number != i) || (col_number != i)) && (matrix[row_number][col_number] != 0))
+ {
+ return false;
+ }
+ }
+ i++;
+ }
+  return true;
 }
 
 bool matrixIsDiagonal(double **matrix, int rows, int columns)
 {
-    int i{0};
-    for (int row_number = 0; row_number < rows; ++row_number)
-    {
-     for (int col_number = 0; col_number < columns; ++col_number)
-     {
-       f (((row_number != i) || (col_number != i)) && (matrix[row_number][col_number] != 0))
-     {
-       return false;
-     }
-    }
-        i++;
-    }
-    return true;
+   int i{0};
+  for (int row_number = 0; row_number < rows; ++row_number)
+ {
+  for (int col_number = 0; col_number < columns; ++col_number)
+ {
+  f (((row_number != i) || (col_number != i)) && (matrix[row_number][col_number] != 0))
+ {
+ return false;
+ }
+ }
+ i++;
+ }
+ return true;
 }
 
 void swap(int &a, int &b)
 {
-    int tmp=a;
-    a=b;
-    b=tmp;
+  int tmp=a;
+  a=b;
+  b=tmp;
 }
 
 void swap(double &a, double &b)
 {
-    double tmp=a;
-    a=b;
-    b=tmp;
+  double tmp=a;
+  a=b;
+  b=tmp;
 }
 
 void sortRow(int *matrix, int columns)
 {
-  for (int j = 0; j < columns-1; ++j)
-  {
-    for (int i = 0; i < columns-1; ++i)
-    {
-     if (matrix[i]>matrix[i+1])
-    {
-     swap(matrix[i],matrix[i+1]);
-    }
-    }
-   }
+ for (int j = 0; j < columns-1; ++j)
+{
+for (int i = 0; i < columns-1; ++i)
+{
+if (matrix[i]>matrix[i+1])
+{
+swap(matrix[i],matrix[i+1]);
+}
+}
+}
 }
 
 void sortRow(double *matrix, int columns)
 {
-  for (int j = 0; j < columns-1; ++j)
-  {
-    for (int i = 0; i < columns-1; ++i)
-    {
-     if (matrix[i]>matrix[i+1])
-    {
-     swap(matrix[i],matrix[i+1]);
-    }
-    }
-  }
+ for (int j = 0; j < columns-1; ++j)
+{
+ for (int i = 0; i < columns-1; ++i)
+{
+if (matrix[i]>matrix[i+1])
+{
+swap(matrix[i],matrix[i+1]);
+}
+}
+}
 }
 
 void sortRowsInMatrix(int **matrix, int rows, int columns)
 {
-  for (int i = 0; i < rows; ++i,*matrix++)
-    {
-     sortRow(*matrix,columns);
-    }
+ for (int i = 0; i < rows; ++i,*matrix++)
+{
+sortRow(*matrix,columns);
+}
 }
 
 void sortRowsInMatrix(double **matrix, int rows, int columns)
 {
-  for (int i = 0; i < rows; ++i,*matrix++)
-  {
-    sortRow(*matrix,columns);
-  }
+ for (int i = 0; i < rows; ++i,*matrix++)
+ {
+ sortRow(*matrix,columns);
+ }
 }
 
 void help()
